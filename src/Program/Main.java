@@ -10,6 +10,7 @@ import Data.Vector2;
 import Mock.MockData;
 import Network.Format;
 import Network.HTTP;
+import Network.Monitor;
 
 public class Main 
 {
@@ -32,7 +33,12 @@ public class Main
 		ArrayList<Vector2> vec = stockBot.pullChartData();
 		ArrayList<Vector2> floatingAverage = stockBot.calcSimpleFloatingAverage(vec);
 		Bullflag bf = new Bullflag(MockData.getSampleData());
-		System.out.println("Main Exit");
+		Monitor mon = new Monitor();
+		while(true)
+		{
+			mon.periodicDataPull();
+		}
+		//System.out.println("Main Exit");
 
 	}
 
