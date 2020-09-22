@@ -29,7 +29,7 @@ public class Bullflag extends Model
 		for(int n = 0; n < dataSet.size(); n++)
 		{
 			//ist der punkt größer als der vorherige && kleiner als der nächste?
-			if(n > 0 && dataSet.get(n).y > dataSet.get(n - 1).y && dataSet.get(n).y < dataSet.get(n + 1).y)
+			if(n > 0 && n + 1 < dataSet.size() && dataSet.get(n).y > dataSet.get(n - 1).y && dataSet.get(n).y < dataSet.get(n + 1).y)
 			{
 				//existiert schon ein flagpole?
 				if(flagPoleStart == null)

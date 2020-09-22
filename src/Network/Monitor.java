@@ -17,9 +17,11 @@ import java.util.Set;
 
 public class Monitor 
 {
-	public String storageDir = "\\Data\\";
+	public static String storageDir = "\\Data\\";
 	public Date lastPulled = null;
 	public static float pullIntervalInMillis = 60000f;
+	public static String xKey = "timestamp";
+	public static String yKey = "last";
 	
 	public static HashMap<String, String> pairs = new HashMap<String, String>()
 	{

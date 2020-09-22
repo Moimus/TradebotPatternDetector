@@ -25,6 +25,23 @@ public class Vector2 extends Model
 		}
 	}
 	
+	public Vector2(JSONObject json, String xKey, String yKey)
+	{
+		try 
+		{
+			this.x = json.getDouble(xKey);
+			this.y = json.getDouble(yKey);
+		} 
+		catch (NumberFormatException e) 
+		{
+			e.printStackTrace();
+		} 
+		catch (JSONException e) 
+		{
+			e.printStackTrace();
+		}
+	}
+	
 	public Vector2(double x, double y)
 	{
 		this.x = x;
