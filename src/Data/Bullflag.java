@@ -2,6 +2,9 @@ package Data;
 
 import java.util.ArrayList;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Bullflag extends Model
 {
 	public Vector2 flagPoleStart = null;
@@ -14,6 +17,7 @@ public class Bullflag extends Model
 	public Vector2 flagStart = null;
 	public ArrayList<Vector2> flagMid = new ArrayList<Vector2>();
 	public Vector2 flagEnd = null;
+	public int flagEndIndex = -1;
 	
 	public double breakoutLevel = -1d;
 	
@@ -59,24 +63,81 @@ public class Bullflag extends Model
 	
 	private void searchFlag(ArrayList<Vector2> dataSet)
 	{
-		double upperLimit = flagPoleEnd.y;
-		
-		for(int n = flagPoleEndIndex + 1; n < dataSet.size(); n++)
+		try
 		{
-			if(dataSet.get(n).y < breakoutLevel)
+			double upperLimit = flagPoleEnd.y;
+			
+			for(int n = flagPoleEndIndex + 1; n < dataSet.size(); n++)
 			{
-				flagMid.add(dataSet.get(n));
+				if(dataSet.get(n).y < breakoutLevel)
+				{
+					flagMid.add(dataSet.get(n));
+				}
+				else if(dataSet.get(n).y > breakoutLevel)
+				{
+					flagEndIndex = n;
+					break;
+				}
 			}
-			else if(dataSet.get(n).y > breakoutLevel)
+			
+			if(flagMid.size() > 0)
 			{
-				break;
+				flagStart = flagMid.get(0);
+				flagEnd = flagMid.get(flagMid.size() - 1);
 			}
 		}
-		
-		if(flagMid.size() > 0)
+		catch(Exception e)
 		{
-			flagStart = flagMid.get(0);
-			flagEnd = flagMid.get(flagMid.size() - 1);
+			System.out.println("BullFlag: Construction failed");
 		}
+
+	}
+	
+	public Boolean isABullflag()
+	{
+		Boolean isFlag = false;
+		if(breakoutLevel != -1 && flagPoleStartIndex != -1 && flagPoleEndIndex != -1 && flagEndIndex != -1)
+		{
+			isFlag = true;
+		}
+		return isFlag;
+	}
+	
+	@Override
+	public String toJSON()
+	{
+		JSONObject json = new JSONObject();
+		try 
+		{
+			json.put("flagPoleStart", flagPoleStart.toJSON());
+			
+			ArrayList<String> flagpoleMidStrings = new ArrayList<String>();
+			for(Vector2 vec : flagpoleMid)
+			{
+				flagpoleMidStrings.add(vec.toJSON());
+			}
+			json.put("flagPoleMid", flagpoleMidStrings);
+			
+			json.put("flagPoleEnd", flagPoleEnd.toJSON());
+			
+			json.put("flagStart", flagStart.toJSON());
+			
+			ArrayList<String> flagMidStrings = new ArrayList<String>();
+			for(Vector2 vec : flagMid)
+			{
+				flagMidStrings.add(vec.toJSON());
+			}
+			json.put("flagMid", flagMidStrings);
+			
+			json.put("flagEnd", this.flagEnd.toJSON());
+			
+			json.put("breakoutLevel", breakoutLevel);
+		} 
+		catch (JSONException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return json.toString();
 	}
 }

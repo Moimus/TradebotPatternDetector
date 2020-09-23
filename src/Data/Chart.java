@@ -16,7 +16,9 @@ import Network.Monitor;
 
 public class Chart 
 {
-	public ArrayList <Vector2> dataPoints = new ArrayList<Vector2>();
+	public ArrayList<Vector2> dataPoints = new ArrayList<Vector2>();
+	public ArrayList<Bullflag> bullflags = new ArrayList<Bullflag>();
+	private ArrayList<Vector2> workingList = new ArrayList<Vector2>();
 	public String pair = "";
 	
 	public Chart(String pair)
@@ -47,6 +49,31 @@ public class Chart
 		}
 	}
 	
+	//scans dataPoints for bullflag patterns
+	public void searchBullflags()
+	{
+		//copy dataList
+		for(Vector2 point : dataPoints)
+		{
+			workingList.add(point);
+		}
+		
+		int pointer = 0;
+		while(pointer < workingList.size() && pointer != -1)
+		{
+			Bullflag bf = new Bullflag(workingList);
+			for(int n = bf.flagEndIndex; n > 0; n--)
+			{
+				workingList.remove(n);
+			}
+			pointer = bf.flagEndIndex;
+			if(bf.isABullflag())
+			{
+				bullflags.add(bf);
+			}
+		}
+	}
+	
 	public void exportCSV()
 	{
 		File f = new File(System.getProperty("user.dir") + Monitor.storageDir + pair + "_export.csv");
@@ -55,6 +82,27 @@ public class Chart
 		for(Vector2 vector : dataPoints)
 		{
 			sb.append(vector.y + ";");
+		}
+		sb.deleteCharAt(sb.lastIndexOf(";"));
+		
+		try 
+		{
+			Files.write(file, sb.toString().getBytes(), StandardOpenOption.CREATE);
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public void exportBullflagCSV()
+	{
+		File f = new File(System.getProperty("user.dir") + Monitor.storageDir + pair + "_bullFlag_export.csv");
+		Path file = Paths.get(System.getProperty("user.dir") + Monitor.storageDir + pair + "_bullFlag_export.csv");
+		StringBuilder sb = new StringBuilder();
+		for(Bullflag flag : bullflags)
+		{
+			sb.append(flag.toJSON() + ";");
 		}
 		sb.deleteCharAt(sb.lastIndexOf(";"));
 		

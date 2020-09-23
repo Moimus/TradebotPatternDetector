@@ -38,11 +38,12 @@ public class Main
 		{
 			mon.periodicDataPull();
 			Chart chart = new Chart("BTC-USD");
-			Bullflag bf = new Bullflag(chart.dataPoints);
+			//Bullflag bf = new Bullflag(chart.dataPoints);
+			chart.searchBullflags();
 			chart.exportCSV();
+			chart.exportBullflagCSV();
 			System.out.println();
 		}
-		//
 
 	}
 

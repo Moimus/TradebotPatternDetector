@@ -74,4 +74,22 @@ public class Vector2 extends Model
 		
 		return dist;
 	}
+
+	@Override
+	public String toJSON() 
+	{
+		JSONObject json = new JSONObject();
+		try 
+		{
+			json.put("x", y);
+			json.put("y", y);
+
+		} 
+		catch (JSONException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return json.toString();
+	}
 }
