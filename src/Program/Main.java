@@ -41,7 +41,8 @@ public class Main
 			//Bullflag bf = new Bullflag(chart.dataPoints);
 			chart.searchBullflags();
 			chart.exportCSV();
-			chart.exportBullflagCSV();
+			chart.exportBullflags();
+			chart.exportBullFlagCoordsCSV();
 			System.out.println();
 		}
 

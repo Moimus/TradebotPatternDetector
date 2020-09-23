@@ -143,3 +143,5 @@
 {"timestamp":"1600848099","low":"10400","high":"10580.8","last":"10453.8","volume":"152.30794583","volume30d":"5931.79264751","bid":10441.4,"ask":10455.2,"priceChange":"41.0","priceChangePercentage":"0.39","pair":"BTC:USD"}
 {"timestamp":"1600850046","low":"10400","high":"10580.8","last":"10480.9","volume":"150.92725976","volume30d":"5931.79264751","bid":10457.5,"ask":10469.9,"priceChange":"16.6","priceChangePercentage":"0.16","pair":"BTC:USD"}
 {"timestamp":"1600850160","low":"10400","high":"10580.8","last":"10480.9","volume":"150.77533436","volume30d":"5931.79264751","bid":10458,"ask":10474,"priceChange":"17.3","priceChangePercentage":"0.17","pair":"BTC:USD"}
+{"timestamp":"1600850877","low":"10400","high":"10580.8","last":"10460.7","volume":"149.37686907","volume30d":"5931.79264751","bid":10449.5,"ask":10469.9,"priceChange":"-13.6","priceChangePercentage":"-0.13","pair":"BTC:USD"}
+{"timestamp":"1600850941","low":"10400","high":"10580.8","last":"10477.8","volume":"150.87865290","volume30d":"5931.79264751","bid":10476.3,"ask":10478,"priceChange":"3.5","priceChangePercentage":"0.03","pair":"BTC:USD"}

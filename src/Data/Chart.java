@@ -95,7 +95,7 @@ public class Chart
 		}
 	}
 	
-	public void exportBullflagCSV()
+	public void exportBullflags()
 	{
 		File f = new File(System.getProperty("user.dir") + Monitor.storageDir + pair + "_bullFlag_export.csv");
 		Path file = Paths.get(System.getProperty("user.dir") + Monitor.storageDir + pair + "_bullFlag_export.csv");
@@ -113,6 +113,43 @@ public class Chart
 		catch (IOException e) 
 		{
 			e.printStackTrace();
+		}
+	}
+	
+	//Debug function, DONT USE THIS!
+	public void exportBullFlagCoordsCSV()
+	{
+		StringBuilder sb;
+		int counter = 0;
+		for(Bullflag flag : bullflags)
+		{
+			File f = new File(System.getProperty("user.dir") + Monitor.storageDir + "DataDump/" + pair + "_bullFlag_" + counter +".csv");
+			Path file = Paths.get(System.getProperty("user.dir") + Monitor.storageDir + "DataDump/" + pair + "_bullFlag_" + counter +".csv");
+			sb = new StringBuilder();
+			sb.append(flag.flagPoleStart.y + ";");
+			for(Vector2 vector : flag.flagpoleMid)
+			{
+				sb.append(vector.y + ";");
+			}
+			sb.append(flag.flagPoleEnd.y + ";");
+			sb.append(flag.flagStart.y + ";");
+			for(Vector2 vector : flag.flagMid)
+			{
+				sb.append(vector.y + ";");
+			}
+			sb.append(flag.flagEnd.y + ";");
+			
+			sb.deleteCharAt(sb.lastIndexOf(";"));
+			
+			try 
+			{
+				Files.write(file, sb.toString().getBytes(), StandardOpenOption.CREATE);
+			} 
+			catch (IOException e) 
+			{
+				e.printStackTrace();
+			}
+			counter++;
 		}
 	}
 

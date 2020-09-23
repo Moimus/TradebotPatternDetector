@@ -143,3 +143,5 @@
 {"timestamp":"1600848099","low":"333.61","high":"347","last":"335.15","volume":"681.97248100","volume30d":"63245.28630600","bid":335.52,"ask":336.83,"priceChange":"-1.59","priceChangePercentage":"-0.47","pair":"ETH:USD"}
 {"timestamp":"1600850046","low":"333.61","high":"347","last":"336.01","volume":"642.22522300","volume30d":"63245.28630600","bid":335.93,"ask":336.94,"priceChange":"-4.99","priceChangePercentage":"-1.46","pair":"ETH:USD"}
 {"timestamp":"1600850160","low":"333.61","high":"347","last":"336.01","volume":"642.22522300","volume30d":"63245.28630600","bid":335.57,"ask":336.66,"priceChange":"-4.99","priceChangePercentage":"-1.46","pair":"ETH:USD"}
+{"timestamp":"1600850877","low":"333.61","high":"347","last":"337.29","volume":"620.42391600","volume30d":"63245.28630600","bid":336.1,"ask":337.14,"priceChange":"-3.49","priceChangePercentage":"-1.02","pair":"ETH:USD"}
+{"timestamp":"1600850941","low":"333.61","high":"347","last":"337.29","volume":"620.42391600","volume30d":"63245.28630600","bid":336.12,"ask":337.28,"priceChange":"-3.49","priceChangePercentage":"-1.02","pair":"ETH:USD"}
