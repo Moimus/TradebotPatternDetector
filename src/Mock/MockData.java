@@ -38,6 +38,24 @@ public class MockData
 		return sampleData;
 	}
 
-
+	//test gradient calculation
+	public static ArrayList<Vector2> getSampleGrapgh()
+	{
+		ArrayList<Vector2> sampleData = new ArrayList<Vector2>()
+		{
+			{
+				add(new Vector2(0d,3d));
+				add(new Vector2(1d,2d));
+				add(new Vector2(2d,1d));
+				add(new Vector2(3d,1d));
+				add(new Vector2(4d,2d));
+				add(new Vector2(5d,4d));
+				add(new Vector2(6d,5d));
+				add(new Vector2(7d,4d));
+			}
+		};
+		
+		return sampleData;
+	}
 
 }

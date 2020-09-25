@@ -7,7 +7,7 @@ public class Vector2 extends Model
 {
 	public double x;
 	public double y;
-	
+
 	public Vector2(JSONObject json)
 	{
 		try 
@@ -69,7 +69,7 @@ public class Vector2 extends Model
 		}
 		catch(NullPointerException ne)
 		{
-			System.out.println("Point out of range");
+			//System.out.println("Point out of range");
 		}
 		
 		return dist;

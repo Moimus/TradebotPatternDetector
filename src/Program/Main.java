@@ -34,6 +34,8 @@ public class Main
 		ArrayList<Vector2> vec = stockBot.pullChartData();
 		ArrayList<Vector2> floatingAverage = stockBot.calcSimpleFloatingAverage(vec);
 		Monitor mon = new Monitor();
+		//System.out.println("testGradient: " + Conversion.Math.calcGradient(new Vector2(0d, 3d), new Vector2(1d,2d)));
+		Conversion.Math.calcAverageGradient(MockData.getSampleGrapgh());
 		while(true)
 		{
 			mon.periodicDataPull();
@@ -43,7 +45,15 @@ public class Main
 			chart.exportCSV();
 			chart.exportBullflags();
 			chart.exportBullFlagCoordsCSV();
-			System.out.println();
+			for(Bullflag bf : chart.bullflags)
+			{
+				if(bf.isNewestofDataSet(chart.dataPoints))
+				{
+					System.out.println(bf.isNewestofDataSet(chart.dataPoints));
+					System.out.println("flag is last");
+				}
+			}
+
 		}
 
 	}

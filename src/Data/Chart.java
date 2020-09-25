@@ -45,7 +45,7 @@ public class Chart
 				vectors.add(v);
 			}
 			dataPoints = vectors;
-			System.out.println();
+			//System.out.println();
 		}
 	}
 	
@@ -97,22 +97,28 @@ public class Chart
 	
 	public void exportBullflags()
 	{
-		File f = new File(System.getProperty("user.dir") + Monitor.storageDir + pair + "_bullFlag_export.csv");
-		Path file = Paths.get(System.getProperty("user.dir") + Monitor.storageDir + pair + "_bullFlag_export.csv");
-		StringBuilder sb = new StringBuilder();
-		for(Bullflag flag : bullflags)
+		if(bullflags.size() > 0)
 		{
-			sb.append(flag.toJSON() + ";");
-		}
-		sb.deleteCharAt(sb.lastIndexOf(";"));
-		
-		try 
-		{
-			Files.write(file, sb.toString().getBytes(), StandardOpenOption.CREATE);
-		} 
-		catch (IOException e) 
-		{
-			e.printStackTrace();
+			File f = new File(System.getProperty("user.dir") + Monitor.storageDir + pair + "_bullFlag_export.csv");
+			Path file = Paths.get(System.getProperty("user.dir") + Monitor.storageDir + pair + "_bullFlag_export.csv");
+			StringBuilder sb = new StringBuilder();
+			for(Bullflag flag : bullflags)
+			{
+				if(flag.isABullflag())
+				{
+					sb.append(flag.toJSON() + ";");
+				}
+			}
+			sb.deleteCharAt(sb.lastIndexOf(";"));
+			
+			try 
+			{
+				Files.write(file, sb.toString().getBytes(), StandardOpenOption.CREATE);
+			} 
+			catch (IOException e) 
+			{
+				e.printStackTrace();
+			}	
 		}
 	}
 	
@@ -126,6 +132,7 @@ public class Chart
 			File f = new File(System.getProperty("user.dir") + Monitor.storageDir + "DataDump/" + pair + "_bullFlag_" + counter +".csv");
 			Path file = Paths.get(System.getProperty("user.dir") + Monitor.storageDir + "DataDump/" + pair + "_bullFlag_" + counter +".csv");
 			sb = new StringBuilder();
+			//add y-coords
 			sb.append(flag.flagPoleStart.y + ";");
 			for(Vector2 vector : flag.flagpoleMid)
 			{
@@ -138,6 +145,24 @@ public class Chart
 				sb.append(vector.y + ";");
 			}
 			sb.append(flag.flagEnd.y + ";");
+			
+			sb.deleteCharAt(sb.lastIndexOf(";"));
+			
+			sb.append("\n");
+			
+			//add x-coords (timestamps)
+			sb.append(Conversion.Math.scientificNotationToDate(flag.flagPoleStart.x) + ";");
+			for(Vector2 vector : flag.flagpoleMid)
+			{
+				sb.append(Conversion.Math.scientificNotationToDate(vector.x) + ";");
+			}
+			sb.append(Conversion.Math.scientificNotationToDate(flag.flagPoleEnd.x) + ";");
+			sb.append(Conversion.Math.scientificNotationToDate(flag.flagStart.x) + ";");
+			for(Vector2 vector : flag.flagMid)
+			{
+				sb.append(Conversion.Math.scientificNotationToDate(vector.x) + ";");
+			}
+			sb.append(Conversion.Math.scientificNotationToDate(flag.flagEnd.x) + ";");
 			
 			sb.deleteCharAt(sb.lastIndexOf(";"));
 			
